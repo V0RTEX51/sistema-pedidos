@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedidos · Painel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">Pedidos<span>.</span></div>
+    <nav>
+      <button class="nav-item active" data-view="painel">Painel</button>
+      <button class="nav-item" data-view="pedidos">Pedidos</button>
+      <button class="nav-item" data-view="produtos">Produtos</button>
+      <button class="nav-item" data-view="clientes">Clientes</button>
+    </nav>
+    <button class="reset" id="resetBtn" title="Apaga os dados e recarrega os dados de exemplo">Restaurar dados de exemplo</button>
+  </aside>
+
+  <main>
+    <!-- PAINEL -->
+    <section class="view active" id="view-painel">
+      <header class="top"><h1>Painel</h1><span class="today" id="today"></span></header>
+      <div class="kpis" id="kpis"></div>
+      <div class="cols">
+        <div class="card">
+          <h2>Entregas de hoje</h2>
+          <ul class="list" id="deliveries"></ul>
+        </div>
+        <div class="card">
+          <h2>Estoque baixo</h2>
+          <ul class="list" id="lowstock"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEDIDOS -->
+    <section class="view" id="view-pedidos">
+      <header class="top">
+        <h1>Pedidos</h1>
+        <div class="actions">
+          <select id="statusFilter" aria-label="Filtrar por status">
+            <option value="">Todos os status</option>
+            <option value="novo">Novo</option>
+            <option value="separacao">Em separação</option>
+            <option value="entregue">Entregue</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          <button class="btn ghost" id="exportBtn">Exportar CSV</button>
+          <button class="btn" id="newOrderBtn">+ Novo pedido</button>
+        </div>
+      </header>
+      <div class="card table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Cliente</th><th>Itens</th><th>Entrega</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="view" id="view-produtos">
+      <header class="top"><h1>Produtos</h1><button class="btn" id="newProductBtn">+ Novo produto</button></header>
+      <div class="card table-wrap">
+        <table>
+          <thead><tr><th>Produto</th><th>Preço</th><th>Estoque</th><th>Mínimo</th><th></th></tr></thead>
+          <tbody id="productsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="view" id="view-clientes">
+      <header class="top"><h1>Clientes</h1><button class="btn" id="newClientBtn">+ Novo cliente</button></header>
+      <div class="card table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Telefone</th><th>Endereço</th><th>Pedidos</th><th></th></tr></thead>
+          <tbody id="clientsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg"><form method="dialog" id="dlgForm"></form></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
